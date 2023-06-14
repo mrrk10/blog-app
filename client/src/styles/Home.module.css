@@ -1,0 +1,20 @@
+.loginCss{
+    width: 30%;
+    height:250px;
+    margin:150px auto ;
+    border: 1px solid;
+    text-align: center;
+    padding: 30px;
+    color: white;
+    background-color:#333333;   
+
+}
+.loginCss button{
+    width: 100px;
+    height: 30px;
+    background-color: red;
+    color: white;
+}
+.loginCss Link{
+    text-decoration: none;
+}

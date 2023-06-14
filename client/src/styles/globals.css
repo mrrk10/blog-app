@@ -1,0 +1,17 @@
+/* General Website Style rules */
+body {
+    font-family: "Helvetica", Sans-Serif;
+    /* background-image: url('../../public//kurakani.png');
+    background-repeat: no-repeat;
+    position:relative;
+     */
+   
+
+  }
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  

@@ -1,0 +1,12 @@
+.navbar{
+    background-color:rgb(43, 43, 56);
+  
+   
+}
+.navbar >.uList{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+
+}
