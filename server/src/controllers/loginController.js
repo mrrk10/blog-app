@@ -7,7 +7,7 @@ const Login=async (req, res) => {
     try {
       // console.log(req.body)
       const data = await Users.findOne({email: req.body.email})
-      console.log(data)
+      // console.log(data)
       // const {password,__v,...refactoredData}=data.toObject()
       // console.log('>>>>>',refactoredData)
 

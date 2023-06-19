@@ -31,7 +31,7 @@ const Header = () => {
  
    <Component position='fixed'>
         <Container>
-            <Link href='/'>HOME</Link>
+            <Link href='/home'>HOME</Link>
             <Link href='/about'>ABOUT</Link>
             <Link href='/contact'>CONTACT</Link>
             <Link href='/logout'>LOGOUT</Link>

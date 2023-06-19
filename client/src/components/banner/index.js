@@ -1,18 +1,46 @@
 import styled from "@emotion/styled";
 import { Box,Typography } from "@mui/material"
+import Image from "next/image";
+import Styles from '../../styles/Banner.module.css'
 
-const Component=styled(Box)`
-margin-top: '100px';
+const Container=styled(Box)`
+  
+& > img{
+box-shadow:10px 10px 5px #ccc;
+height
+width:'100%';
+
+
+    
+  
+}
 `
+
+
+
+
 
 const Banner = () => {
   return (
     <>
-    <Box sx={{mt:8}}>
-   <button>hello</button>
+    <Container sx={{mt:8}}>
+      
+      <img
+      src="/blog/banner.jpeg"
+      width="100%"
+      height={150}
+
+      alt="Picture of the author"
+    
+    />
 
 
-    </Box>
+     
+   
+    
+
+
+    </Container>
     </>
   )
 }

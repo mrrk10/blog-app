@@ -1,0 +1,52 @@
+.error{
+    color: red;
+    margin-left:10px;
+}
+.fileInput>input{
+    background-color: #333333;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+}
+.formikContainer{
+    display: flex;
+    flex-direction: column;
+ 
+}
+.inputFiled{
+    height: 30px;
+    border: none;
+    font-size: 20px;
+    margin: 10px 0 0;
+    border-radius: 10px;
+
+   
+
+}
+.inputFiled:hover{
+    background-color:#ece6e6;
+    outline: none;
+}
+
+.dropDwon{
+    width: 40vh;
+    height: 5vh;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #333333;
+    color: white;
+    font-size: 20px;
+}
+.btn{
+   float: right;
+   position: absolute;
+   top:50vh;
+   right: 0vh;
+   width: 30vh;
+   height: 5vh;
+   background-color: #333333;
+   color: white;
+   font-size: 20px;
+   border-radius: 10px;
+
+}
