@@ -59,7 +59,7 @@ const submitBlog=async(formFields)=>{
   formData.append("categories",formFields.categories)
   formData.append("description",formFields.description)
   formData.append("username",fullname)
-  const res = await fetch('http://localhost:4000/uploads', {
+  const res = await fetch('http://localhost:4000/blogs', {
     method: "POST",
     body: formData,
   });

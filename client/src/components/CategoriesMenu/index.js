@@ -4,7 +4,13 @@ import { useState } from 'react';
 import { BlogCategories } from '@/config/categories';
 import Styles from '../../styles/Categories.module.css'
 import Link from 'next/link';
-const Categories = () => {
+// import { usePathname } from 'next/navigation'
+const CategoriesMenu = () => {
+  // const pathname = usePathname()
+  // console.log(pathname)
+ 
+
+
   const Component=styled(Drawer)`
       // position:absolute;
       // top: 200px;
@@ -63,13 +69,18 @@ clear:both;
         onClose={onClose}
         open={open}
       >
+            <Link href='/home'>All categories</Link>
+
         {
           BlogCategories.map(val=>{
             return(
-              
+            <>
             <div id={val.id} className={Styles.item}>
-                {val.type}
+              <Link href={`/home?category=${val.type}`}>{val.type}</Link>
             </div>
+            </>
+              
+            
 
             )
          
@@ -79,4 +90,4 @@ clear:both;
     </>
   );
 };
-export default Categories;
+export default CategoriesMenu;

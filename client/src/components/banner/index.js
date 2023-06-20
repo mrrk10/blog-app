@@ -4,12 +4,14 @@ import Image from "next/image";
 import Styles from '../../styles/Banner.module.css'
 
 const Container=styled(Box)`
+
+
   
 & > img{
 box-shadow:10px 10px 5px #ccc;
 height
 width:'100%';
-
+position:sticky;
 
     
   

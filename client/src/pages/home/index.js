@@ -1,18 +1,16 @@
 import Header from '../../components/header'
 import Banner from '../../components/banner'
-import Categories from '@/components/categories'
-import styled from '@emotion/styled'
-import { BlogCategories } from '@/config/categories'
-
+import CategoriesMenu from '@/components/CategoriesMenu'
+import AllCategories from '@/components/allCategores'
  const Home = () => {
-  // const userinfo = useSelector(state => state)
   
   return (
     <>
     <Header/>
       <Banner/>
+      <CategoriesMenu/>
+      <AllCategories/>
 
-      <Categories/>
 
 
 

@@ -1,3 +1,4 @@
+const { json } = require('body-parser');
 const Blogs=require('../models/blog');
 
 
@@ -27,5 +28,51 @@ const blogController=async(req, res)=>{
     
 } 
 
-module.exports=blogController;
+const getBlogController=async(req,res)=>{
+  console.log(req.query)
+
+  const category=req.query.category
+  console.log(category)
+  if(category!=undefined){
+    const categoryData=await Blogs.find({categories:category})
+    // console.log(categoryData)
+    if(categoryData){
+      res.status(200).json({
+        categoryData:categoryData
+      })
+    }
+    else{
+      res.status(404).json({
+        msg:'Data not available'
+      })
+    }
+   
+  }
+  else{
+  try {
+const allCategoryData=await Blogs.find();
+// console.log(allCategoryData)
+if(allCategoryData){
+  res.status(200).json({
+    allCategoryData:allCategoryData
+  })
+}
+
+else{
+  res.status(404).json({
+    msg:'Data not available'
+  })
+}
+    
+  } catch (error) {
+    console.log(error)
+    
+  }
+  }
+
+}
+
+
+
+module.exports={blogController,getBlogController};
     
