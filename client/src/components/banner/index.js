@@ -28,7 +28,7 @@ const Banner = () => {
     <Container sx={{mt:8}}>
       
       <img
-      src="/blog/banner.jpeg"
+      src="/uploads/banner.jpeg"
       width="100%"
       height={150}
 

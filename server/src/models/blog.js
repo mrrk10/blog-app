@@ -22,9 +22,7 @@ const blogSchema = new mongoose.Schema({
         required:true
 
     },
-    createdDate: {
-      type: Date
-  }
+    createdAt : { type : Date, default: Date.now }
     
   
   

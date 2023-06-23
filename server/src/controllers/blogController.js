@@ -1,8 +1,6 @@
-const { json } = require('body-parser');
 const Blogs=require('../models/blog');
-
-
-const blogController=async(req, res)=>{
+var ObjectId = require('mongodb').ObjectID;
+const blogPostController=async(req, res)=>{
     // console.log('text',req.body)
     // console.log(req.file)
 
@@ -29,11 +27,11 @@ const blogController=async(req, res)=>{
 } 
 
 const getBlogController=async(req,res)=>{
-  console.log(req.query)
+  // console.log(req.query)
 
   const category=req.query.category
-  console.log(category)
-  if(category!=undefined){
+  // console.log(category)
+  if(category){
     const categoryData=await Blogs.find({categories:category})
     // console.log(categoryData)
     if(categoryData){
@@ -72,7 +70,55 @@ else{
 
 }
 
+const getByIDBlogController=async(req,res)=>{
+  console.log('req.params.id value',req.params.id)
+  // const objectId =  objectId(req.params.id);
+
+  try {
+  
+   
+      const data=await Blogs.findById(req.params.id)
+      console.log(data)
+      if(data){
+        res.status(200).json({
+          dataById:data
+        })
+      }
+      else{
+        res.status(404).json({
+          msg:'data not found'
+        })
+      }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const updateBlogController=async(req,res)=>{
+  try {
+      // console.log(req.params)
+      // console.log(req.body)
+    const updatedData=await Blogs.findByIdAndUpdate(req.params.id,{$set:req.body})
+    if(updatedData){
+      res.json({
+        msg:'updated successfully'
+
+      })
+      }
+      else{
+        res.json({
+          msg:'somthing went wrong'
+        })
+      }
+      
+    
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 
-module.exports={blogController,getBlogController};
+
+module.exports={blogPostController,getBlogController,getByIDBlogController,updateBlogController};
     

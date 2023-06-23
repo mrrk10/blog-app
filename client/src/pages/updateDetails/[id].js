@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Box,styled } from "@mui/material"
 import Image from "next/image"
 import { Formik, Field, Form } from "formik";
@@ -14,10 +14,12 @@ import Header from "@/components/header";
 
 
 
-const CreateBlog = () => {
+const UpdateBlog = () => {
   const[categoriesData,setCategoriesData]=useState([])
   const [messageApi, contextHolder] = message.useMessage();
-  const router = useRouter();
+  const router=useRouter();
+ 
+
 
 
   const[file,setFile]=useState(null)
@@ -54,6 +56,17 @@ const saveFile=(e)=>{
   setFile(e.target.files[0]);
   // console.log(e.target.files[0])
 }
+const fetchedData=async()=>{
+    const res=await fetch(`http://localhost:4000/blogs/${router.query.id}`)
+    const upData=await res.json()
+    console.log(upData)
+}
+
+
+useEffect(()=>{
+    fetchedData();
+        
+},[])
 
 const submitBlog=async(formFields)=>{
   const formData = new FormData();
@@ -64,12 +77,11 @@ const submitBlog=async(formFields)=>{
   formData.append("description",formFields.description)
   formData.append("username",fullname)
   const res = await fetch(`http://localhost:4000/blogs`, {
-    method: "POST",
+    method: "PUT",
     body: formData,
   });
   const data=await res.json();
   setCategoriesData(data.categoryData)
-  console.log(data)
   if(data.success){
     messageApi.success(data.msg);
     // router.push('/home');
@@ -168,4 +180,4 @@ const submitBlog=async(formFields)=>{
   )
 }
 
-export default CreateBlog;
+export default UpdateBlog;

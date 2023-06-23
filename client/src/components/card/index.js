@@ -1,4 +1,4 @@
-import { Box,Typography,Grid } from "@mui/material"
+import { Box,Typography } from "@mui/material"
 import styled from "@emotion/styled";
 
 const Container=styled(Box)`
@@ -19,7 +19,7 @@ const Card = ({fetchData}) => {
     <>
     <Container>
   
-    <Image src={`/blog/${fetchData.pic}`}/>
+    <Image src={`/uploads/${fetchData?.pic}`}/>
       <Typography>{fetchData.categories}</Typography>
       <Typography>{fetchData.title}</Typography>
       <Typography>{fetchData.username}</Typography>
