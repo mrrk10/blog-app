@@ -15,7 +15,7 @@ import Header from "@/components/header";
 
 
 const CreateBlog = () => {
-  const[categoriesData,setCategoriesData]=useState([])
+  // const[categoriesData,setCategoriesData]=useState([])
   const [messageApi, contextHolder] = message.useMessage();
   const router = useRouter();
 
@@ -49,7 +49,6 @@ const blogValidation = Yup.object().shape({
   });
 
 
-  const url= categoriesData.pic;
 const saveFile=(e)=>{
   setFile(e.target.files[0]);
   // console.log(e.target.files[0])
@@ -68,14 +67,14 @@ const submitBlog=async(formFields)=>{
     body: formData,
   });
   const data=await res.json();
-  setCategoriesData(data.categoryData)
+  // setCategoriesData(data.categoryData)
   console.log(data)
   if(data.success){
-    messageApi.success(data.msg);
+    messageApi.success(data.message);
     // router.push('/home');
   }
   else{
-    messageApi.error(data.error);
+    messageApi.error(data.message);
 
   }
 }
@@ -119,9 +118,15 @@ const submitBlog=async(formFields)=>{
        handleSubmit,
         }) => (
          <Form onSubmit={handleSubmit}>
+<button style={{float:'right',width:'15vh',padding:'8px',
+backgroundColor:'#333333',color:'white',borderRadius:'10px'}} 
+type="submit">Submit</button> 
+
   <div className={Styles.fileInput}>
   <input type="file"   onChange={saveFile} />
   </div>
+  
+
           
               
         
@@ -157,13 +162,13 @@ const submitBlog=async(formFields)=>{
 
 
            
-<button type="submit" >Submit</button> 
 </Form>
         
        )}
      </Formik>
-    </div>
     {contextHolder}       
+
+    </div>
     </div>
   )
 }

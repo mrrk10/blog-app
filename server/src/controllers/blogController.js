@@ -1,5 +1,4 @@
 const Blogs=require('../models/blog');
-var ObjectId = require('mongodb').ObjectID;
 const blogPostController=async(req, res)=>{
     // console.log('text',req.body)
     // console.log(req.file)
@@ -10,14 +9,16 @@ const blogPostController=async(req, res)=>{
     // console.log(data)
     if(data){
       res.json({
+        message:'updated successfully',
         success:true,
-        msg:'updated successfully'
+       
       })
     }
     else{
       res.json({
-        success:false,
-        msg:"something went wrong "
+        message:"something went wrong ",
+        success:false
+       
       }
         
 
@@ -27,10 +28,10 @@ const blogPostController=async(req, res)=>{
 } 
 
 const getBlogController=async(req,res)=>{
-  // console.log(req.query)
+  console.log(req.query)
 
   const category=req.query.category
-  // console.log(category)
+  console.log(category)
   if(category){
     const categoryData=await Blogs.find({categories:category})
     // console.log(categoryData)
@@ -78,7 +79,7 @@ const getByIDBlogController=async(req,res)=>{
   
    
       const data=await Blogs.findById(req.params.id)
-      console.log(data)
+      // console.log(data)
       if(data){
         res.status(200).json({
           dataById:data
@@ -97,17 +98,24 @@ const getByIDBlogController=async(req,res)=>{
 const updateBlogController=async(req,res)=>{
   try {
       // console.log(req.params)
+      // console.log('body_data',req.body)
+      // console.log(req.file)
+      req.body.pic=req.file.originalname
       // console.log(req.body)
-    const updatedData=await Blogs.findByIdAndUpdate(req.params.id,{$set:req.body})
+    const updatedData=await Blogs.findByIdAndUpdate(req.params.id,req.body)
+    // console.log(updatedData)
     if(updatedData){
       res.json({
-        msg:'updated successfully'
+        msg:'updated successfully',
+        success:true
+      
 
       })
       }
       else{
         res.json({
-          msg:'somthing went wrong'
+          msg:'somthing went wrong',
+          success:false
         })
       }
       
@@ -118,7 +126,25 @@ const updateBlogController=async(req,res)=>{
   }
 }
 
+const deleteByIdBlogController=async(req,res)=>{
+  try {
+    const data=await Blogs.findByIdAndDelete(req.params.id)
+    if(data){
+      res.json({
+        msg:'deleted'
+      })
+    }
+    else{
+      res.json({
+        msg:'something went wrong'
+      })
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 
-module.exports={blogPostController,getBlogController,getByIDBlogController,updateBlogController};
+
+module.exports={blogPostController,getBlogController,getByIDBlogController,updateBlogController,deleteByIdBlogController};
     

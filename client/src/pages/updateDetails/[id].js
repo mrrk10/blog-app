@@ -59,7 +59,9 @@ const saveFile=(e)=>{
 const fetchedData=async()=>{
     const res=await fetch(`http://localhost:4000/blogs/${router.query.id}`)
     const upData=await res.json()
-    console.log(upData)
+    setCategoriesData(upData.dataById)
+
+    // console.log(upData)
 }
 
 
@@ -76,15 +78,15 @@ const submitBlog=async(formFields)=>{
   formData.append("categories",formFields.categories)
   formData.append("description",formFields.description)
   formData.append("username",fullname)
-  const res = await fetch(`http://localhost:4000/blogs`, {
-    method: "PUT",
+  const res = await fetch(`http://localhost:4000/blogs/${router.query.id}`, {
+    method: "put",
     body: formData,
   });
   const data=await res.json();
-  setCategoriesData(data.categoryData)
+  console.log(data)
   if(data.success){
     messageApi.success(data.msg);
-    // router.push('/home');
+    router.push('/home');
   }
   else{
     messageApi.error(data.error);
@@ -96,6 +98,7 @@ const submitBlog=async(formFields)=>{
 
   return (
     <div>
+      {/* {JSON.stringify(categoriesData)} */}
       <Header/>
      
       <Box>
@@ -110,13 +113,16 @@ const submitBlog=async(formFields)=>{
 
     <div className={Styles.formikContainer}>
     <Formik
-       initialValues={{
-        title: '',
-        categories:'',
-        description: ''
+       initialValues={
+        {
+          title: categoriesData.title,
+          categories:categoriesData.categories,
+          description:categoriesData.description
+        }
+       }
         
-        
-       }}
+       
+      
        validationSchema={blogValidation}
        onSubmit={values => {
          submitBlog(values)
@@ -132,13 +138,12 @@ const submitBlog=async(formFields)=>{
         }) => (
          <Form onSubmit={handleSubmit}>
   <div className={Styles.fileInput}>
-  <input type="file"   onChange={saveFile} />
+  <input type="file"   onChange={saveFile}  />
   </div>
           
               
         
-           <Field name="title" placeholder="title..." className={Styles.inputFiled
-          }  
+           <Field  name="title" placeholder="title..." className={Styles.inputFiled}
            /> 
            {errors.title && touched.title ? (
              <div className={Styles.error}>{errors.title}</div>
@@ -169,12 +174,13 @@ const submitBlog=async(formFields)=>{
 
 
            
-<button type="submit" >Submit</button> 
+<button type="submit" >Update</button> 
 </Form>
         
        )}
      </Formik>
     </div>
+    {/* {JSON.stringify(categoriesData  )} */}
     {contextHolder}       
     </div>
   )

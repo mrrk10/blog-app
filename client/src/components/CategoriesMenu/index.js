@@ -5,10 +5,12 @@ import { BlogCategories } from '@/config/categories';
 import Styles from '../../styles/Categories.module.css'
 import Link from 'next/link';
 // import { usePathname } from 'next/navigation'
+import Router, { useRouter } from 'next/router';
 const CategoriesMenu = () => {
   // const pathname = usePathname()
   // console.log(pathname)
- 
+ const router=useRouter()
+ console.log(router.query )
 
 
   const Component=styled(Drawer)`
