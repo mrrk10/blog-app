@@ -17,7 +17,8 @@ const Main = () => {
   token?<Home/>:<Login/>
  } */}
 
-<Login/>
+{/* <Login/> */}
+<Home/>
 
  </div>
 
