@@ -62,13 +62,24 @@ const ViewDetail = () => {
      
   },[])
 
+  const handleDelete=async()=>{
+        const res=await fetch(`http://localhost:4000/blogs/${router.query.id}`,{
+          method:'DELETE'
+        })
+
+        const data=await res.json();
+      if(data){
+        router.push('/home');
+      }
+  }
+
   return (
     <>
 <Header/>
 <Container>
   <Image src={`/uploads/${categoriesData.pic}`}/>
 
-  <Deleteicon style={{float:'right',color:'red'}} />
+  <Deleteicon style={{float:'right',color:'red'}} onClick={handleDelete}/>
   
   <Link href={`/updateDetails/${categoriesData._id}`}><EditIcon style={{float:"right"}} color="primary"/></Link>
   
