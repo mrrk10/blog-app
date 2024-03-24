@@ -2,6 +2,7 @@ import Header from '../../components/header'
 import Banner from '../../components/banner'
 import CategoriesMenu from '@/components/CategoriesMenu'
 import AllCategories from '@/components/allCategores'
+import FacebookMsg from '@/components/facebookMsg'
  const Home = () => {
   
   return (
@@ -10,7 +11,7 @@ import AllCategories from '@/components/allCategores'
       <Banner/>
       <CategoriesMenu/>
       <AllCategories/>
-
+      <FacebookMsg/>
 
 
 
